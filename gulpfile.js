@@ -28,7 +28,7 @@ export const browserSyncFunc = () => {
 export const html = () => {
     return gulp
     .src([
-        "src/pug/**/*.pug"
+        "src/pug/*.pug"
     ])
     .pipe(pug({
         //pretty: true
@@ -46,7 +46,7 @@ export const css = () => {
         "src/sass/*.sass"
     ])
     .pipe(sass({
-        outputStyle: "compressed" //expended, conpact
+        outputStyle: "compressed" //expanded, compact
     })
     .on("error", sass.logError))
     .pipe(autoprefixer(["last 15 versions"], {
@@ -64,12 +64,12 @@ export const css = () => {
 }
 
 export const js = () => {
-    return gulp
-    .src ([
+    return gulp 
+    .src([
         "src/js/**/*.js"
     ])
     .pipe(uglify.default())
-    .pipe(concat("script.js"))
+    .pipe(concat("scripts.js"))
     .pipe(gulp.dest("docs/js"))
     .pipe(browserSync.reload({
         stream: true
@@ -77,7 +77,7 @@ export const js = () => {
 }
 
 export const files = () => {
-    return gulp
+    return gulp 
     .src([
         "src/*.*"
     ], {dot: true})
@@ -88,7 +88,7 @@ export const files = () => {
 }
 
 export const fonts = () => {
-    return gulp
+    return gulp 
     .src([
         "src/fonts/**/*.*"
     ])
@@ -99,25 +99,24 @@ export const fonts = () => {
 }
 
 export const images = () => {
-    return gulp
+    return gulp 
     .src([
         "src/img/**/*"
     ])
     .pipe(cache(imagemin()))
     .pipe(gulp.dest("docs/img"))
     .pipe(browserSync.reload({
-        stream:true
+        stream: true
     }))
 }
 
 export const clear = () => {
     return cache.clearAll()
-}
+} 
 
 export const delDocs = () => {
-    return del("docs");
+    return del("docs")
 }
-
 
 export const watch = () => {
     gulp.watch("src/sass/**/*.sass", gulp.parallel(css))
